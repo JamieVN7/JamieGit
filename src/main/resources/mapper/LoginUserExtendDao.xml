@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.login.service.dao.LoginUserDao">
+    <resultMap id="loginUserMap" type="com.example.login.api.vo.LoginVo">
+        <id column="id" jdbcType="INTEGER" property="id"></id>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"></result>
+        <result column="password" jdbcType="VARCHAR" property="password"></result>
+    </resultMap>
+
+    <select id="selectAll" resultMap="loginUserMap">
+        select * from login_user
+    </select>
+
+    <select id="selectOne" parameterType="map" resultMap="loginUserMap">
+        select * from login_user lu
+        <trim prefix="where"  prefixOverrides="and | or">
+            <if test="id != null">
+                and lu.id = #{id}
+            </if>
+            <if test="userName != null">
+                and lu.user_name = #{userName}
+            </if>
+        </trim>
+    </select>
+
+    <delete id="deleteDuplicateUserName" parameterType="map">
+        delete from login_user where id not in (
+          select n.max_id from (
+            select max(id) as max_id from login_user group by user_name
+          ) as n
+        )
+    </delete>
+
+</mapper>
