@@ -24,7 +24,8 @@ public class LoginController {
     private LoginApi loginApi;
 
     public void test(){
-        
+
+
     }
 
     /**
