@@ -23,12 +23,6 @@ public class LoginController {
     @Autowired
     private LoginApi loginApi;
 
-    @RequestMapping("/test/")
-    @ResponseBody
-    public String test(){
-        return "";
-    }
-
     /**
      * 登录页面
      * @param model
