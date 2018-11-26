@@ -34,6 +34,10 @@ public class LoginController {
         return "index";
     }
 
+    public void test(){
+
+    }
+
     /**
      * 成功登录页面
      * @param userName：获取session保存的用户名
