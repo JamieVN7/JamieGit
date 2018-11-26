@@ -23,10 +23,8 @@ public class LoginController {
     @Autowired
     private LoginApi loginApi;
 
-    @RequestMapping("/test/")
-    @ResponseBody
-    public String test(){
-        return "";
+    public void test(){
+        
     }
 
     /**
