@@ -23,11 +23,6 @@ public class LoginController {
     @Autowired
     private LoginApi loginApi;
 
-    public void test(){
-
-
-    }
-
     /**
      * 登录页面
      * @param model
