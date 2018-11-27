@@ -27,6 +27,9 @@
             <div class="login-button-box">
                 <button id="regist">注册</button>
             </div>
+            <div class="return-box">
+                <a id="return">返回登录页</a>
+            </div>
         </div>
     </body>
 </html>

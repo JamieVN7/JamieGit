@@ -14,6 +14,10 @@
             $("#registPage").on("click", function () {
                window.location.href = "/login/regist/";
             });
+
+            $("#return").on("click", function () {
+                window.location.href = "/login/index/";
+            })
         },
 
         //用户登录

@@ -108,3 +108,23 @@ body{
 .login-box a:active{
     color: #ee7204;
 }
+
+.return-box {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.return-box a{
+    cursor: pointer;
+    font-size: 13px;
+    color: #4a4744;
+    text-decoration: none;
+}
+
+.return-box a:hover{
+    color: #ff7d0a;
+}
+
+.return-box a:active{
+    color: #ee7204;
+}
