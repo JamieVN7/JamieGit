@@ -37,7 +37,7 @@ public class LoginRest implements LoginApi {
 
     @Override
     public Integer delete(LoginRequest request) {
-        return loginBiz.delete(request.getId());
+        return loginBiz.delete(request);
     }
 
     @Override
@@ -45,8 +45,4 @@ public class LoginRest implements LoginApi {
         return loginBiz.userCheck(request, session);
     }
 
-    @Override
-    public Integer deleteDuplicateUserName(LoginRequest request) {
-        return loginBiz.deleteDuplicateUserName(request);
-    }
 }

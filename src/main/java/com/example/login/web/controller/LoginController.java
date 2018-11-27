@@ -100,26 +100,7 @@ public class LoginController {
     @RequestMapping("/delete/")
     @ResponseBody
     public Integer delete(LoginRequest request){
-        Integer result;
-        //删除用户名重复的记录
-        if (request.getDelStatus() == 1){
-            result = loginApi.deleteDuplicateUserName(request);
-        }
-        //按照id删除
-        else {
-            result = loginApi.delete(request);
-        }
-        return result;
+        return loginApi.delete(request);
     }
 
-    /**
-     * 单条查询
-     * @param request
-     * @return
-     */
-    @RequestMapping("/select/")
-    @ResponseBody
-    public LoginVo select(LoginRequest request){
-        return loginApi.selectOne(request);
-    }
 }

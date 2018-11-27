@@ -32,4 +32,11 @@ public class LoginUserDao extends BaseDaoImpl<LoginUserEntity> {
         paramMap.put("userName", request.getUserName());
         return getSqlSession().delete(getStatement("deleteDuplicateUserName"), paramMap);
     }
+
+    //根据用户名删除
+    public Integer deleteByUserName(LoginRequest request){
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("userName", request.getUserName());
+        return getSqlSession().delete(getStatement("deleteByUserName"), paramMap);
+    }
 }

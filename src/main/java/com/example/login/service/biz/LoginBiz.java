@@ -34,6 +34,7 @@ public class LoginBiz {
         return loginUserDao.updateSelective(entity);
     }
 
+    //注册逻辑
     @Transactional(rollbackFor = Exception.class)
     public Integer insert(LoginRequest request){
         //无密码或用户名
@@ -57,9 +58,22 @@ public class LoginBiz {
         return loginUserDao.insertSelective(entity);
     }
 
+    //删除记录
     @Transactional(rollbackFor = Exception.class)
-    public Integer delete(Integer id){
-        return loginUserDao.deleteByPrimaryKey(id);
+    public Integer delete(LoginRequest request){
+        Integer status = request.getDelStatus();
+        //删除用户名重复的记录
+        if (status == 1){
+            return loginUserDao.deleteDuplicateUserName(request);
+        }
+        //根据用户名删除
+        else if (status == 2){
+            return loginUserDao.deleteByUserName(request);
+        }
+        //根据id删除
+        else {
+            return loginUserDao.deleteByPrimaryKey(request.getId());
+        }
     }
 
     public Integer userCheck(LoginRequest request, HttpSession session){
@@ -84,11 +98,5 @@ public class LoginBiz {
         session.setAttribute(LoginFilter.SESSION_KEY, loginVo.getUserName());
 
         return 1;
-    }
-
-    //删除用户名重复的记录
-    @Transactional(rollbackFor = Exception.class)
-    public Integer deleteDuplicateUserName(LoginRequest request){
-        return loginUserDao.deleteDuplicateUserName(request);
     }
 }

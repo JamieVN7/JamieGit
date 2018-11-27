@@ -29,6 +29,4 @@ public interface LoginApi {
     @RequestMapping(value = Urls.userCheck, method = RequestMethod.POST)
     Integer userCheck(@RequestBody LoginRequest request, HttpSession session);
 
-    @RequestMapping(value = Urls.deleteDuplicateUserName, method = RequestMethod.POST)
-    Integer deleteDuplicateUserName(@RequestBody LoginRequest request);
 }

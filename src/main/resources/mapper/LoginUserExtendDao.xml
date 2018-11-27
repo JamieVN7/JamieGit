@@ -37,4 +37,11 @@
         )
     </delete>
 
+    <delete id="deleteByUserName" parameterType="map">
+        delete from login_user
+        <trim prefix="where">
+            user_name = #{userName}
+        </trim>
+    </delete>
+
 </mapper>

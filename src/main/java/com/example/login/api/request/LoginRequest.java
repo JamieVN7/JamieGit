@@ -12,5 +12,5 @@ public class LoginRequest implements Serializable {
     private String userName;
     private String password;
 
-    private Integer delStatus;//1:删除名称重复的记录
+    private Integer delStatus;//1:删除名称重复的记录，2：根据用户名删除
 }
