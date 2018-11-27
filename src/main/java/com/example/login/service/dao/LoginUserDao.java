@@ -11,8 +11,12 @@ import java.util.Map;
 
 @Repository
 public class LoginUserDao extends BaseDaoImpl<LoginUserEntity> {
-    public List<LoginVo> selectAll(){
-        return getSqlSession().selectList(getStatement("selectAll"));
+    public List<LoginVo> selectAll(LoginRequest request){
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("userName", request.getUserName());
+        paramMap.put("password", request.getPassword());
+        paramMap.put("id", request.getId());
+        return getSqlSession().selectList(getStatement("selectAll"), paramMap);
     }
 
     public LoginVo selectOne(LoginRequest request){

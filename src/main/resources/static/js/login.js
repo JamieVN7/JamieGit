@@ -58,6 +58,9 @@
                         //返回登录页
                         window.location.href = "/login/index/";
                     }
+                    else if (resp.status == 0) {
+                        alert(resp.data);
+                    }
                 });
             }
         }

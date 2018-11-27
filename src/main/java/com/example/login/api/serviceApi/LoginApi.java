@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface LoginApi {
     @RequestMapping(value = Urls.userSelectAll, method = RequestMethod.POST)
-    List<LoginVo> selectAll();
+    List<LoginVo> selectAll(@RequestBody LoginRequest request);
 
     @RequestMapping(value = Urls.userSelectOne, method = RequestMethod.POST)
     LoginVo selectOne(@RequestBody LoginRequest request);

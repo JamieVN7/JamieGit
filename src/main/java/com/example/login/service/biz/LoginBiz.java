@@ -8,6 +8,7 @@ import com.example.login.web.filter.LoginFilter;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
 import javax.servlet.http.HttpSession;
@@ -18,24 +19,32 @@ public class LoginBiz {
     @Autowired
     private LoginUserDao loginUserDao;
 
-    public List<LoginVo> selectAll(){
-        return loginUserDao.selectAll();
+    public List<LoginVo> selectAll(LoginRequest request){
+        return loginUserDao.selectAll(request);
     }
 
     public LoginVo selectOne(LoginRequest request){
         return loginUserDao.selectOne(request);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public Integer update(LoginRequest request){
         LoginUserEntity entity = new LoginUserEntity();
         BeanUtils.copyProperties(request, entity);
         return loginUserDao.updateSelective(entity);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public Integer insert(LoginRequest request){
-        //无密码
-        if (request.getPassword() == null){
+        //无密码或用户名
+        if (request.getPassword() == null
+                || request.getUserName() == null){
             return 0;
+        }
+        //看该用户名是否已注册
+        List<LoginVo> vos = loginUserDao.selectAll(request);
+        if (vos.size() > 0){
+            return -1;
         }
         //请求参数
         LoginUserEntity entity = new LoginUserEntity();
@@ -48,6 +57,7 @@ public class LoginBiz {
         return loginUserDao.insertSelective(entity);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public Integer delete(Integer id){
         return loginUserDao.deleteByPrimaryKey(id);
     }
@@ -77,6 +87,7 @@ public class LoginBiz {
     }
 
     //删除用户名重复的记录
+    @Transactional(rollbackFor = Exception.class)
     public Integer deleteDuplicateUserName(LoginRequest request){
         return loginUserDao.deleteDuplicateUserName(request);
     }

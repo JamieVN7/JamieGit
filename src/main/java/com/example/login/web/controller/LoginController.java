@@ -84,7 +84,10 @@ public class LoginController {
     public JsonResult userInsert(LoginRequest request){
         Integer result = loginApi.insert(request);
         if (result == 0){
-            return JsonResult.fail();
+            return JsonResult.fail("请求参数有误");
+        }
+        else if (result == -1){
+            return JsonResult.fail("该用户名已注册");
         }
         return JsonResult.success();
     }

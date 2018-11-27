@@ -16,8 +16,8 @@ public class LoginRest implements LoginApi {
     private LoginBiz loginBiz;
 
     @Override
-    public List<LoginVo> selectAll() {
-        return loginBiz.selectAll();
+    public List<LoginVo> selectAll(LoginRequest request) {
+        return loginBiz.selectAll(request);
     }
 
     @Override

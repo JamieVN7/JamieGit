@@ -9,7 +9,12 @@
     </resultMap>
 
     <select id="selectAll" resultMap="loginUserMap">
-        select * from login_user
+        select * from login_user lu
+        <trim prefix="where" prefixOverrides="and | or" suffixOverrides=",">
+            <if test="userName != null">
+                and lu.user_name = #{userName}
+            </if>
+        </trim>
     </select>
 
     <select id="selectOne" parameterType="map" resultMap="loginUserMap">
