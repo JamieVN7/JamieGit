@@ -1,6 +1,5 @@
 package com.example.login.web.filter;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
