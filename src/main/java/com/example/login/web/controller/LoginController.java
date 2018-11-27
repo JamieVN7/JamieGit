@@ -23,7 +23,7 @@ public class LoginController {
     @Autowired
     private LoginApi loginApi;
 
-    /**
+  /**
      * 登录页面
      * @param model
      * @return
@@ -43,6 +43,7 @@ public class LoginController {
     @RequestMapping("/checkIn/")
     public String checkIn(@SessionAttribute(LoginFilter.SESSION_KEY) String userName, Model model){
         model.addAttribute("userName", userName);
+        model.addAttribute("cdn", cdn);
         return "checkIn";
     }
 

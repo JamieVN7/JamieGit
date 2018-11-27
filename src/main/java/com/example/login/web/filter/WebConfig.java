@@ -24,7 +24,7 @@ public class WebConfig extends WebMvcConfigurationSupport {
                 .addPathPatterns("/**")
                 .excludePathPatterns(
                         "/static/**",       //静态资源路径
-                        "/login/index/",    //登录页
+                        "/login/index**/",  //登录页
                         "/login/check/",    //登录校验
                         "/login/select**/", //查询
                         "/login/delete/",   //删除

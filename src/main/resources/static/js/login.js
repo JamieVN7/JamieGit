@@ -9,7 +9,11 @@
 
             $("#regist").on("click", function () {
                 user.regist();
-            })
+            });
+
+            $("#registPage").on("click", function () {
+               window.location.href = "/login/regist/";
+            });
         },
 
         //用户登录
